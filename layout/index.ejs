@@ -1,7 +1,14 @@
-<div id="home-head" style=<%- theme.home_background %>>
+<div id="home-head">
     <script>
         var menu = document.getElementById("menu")
         menu.className += " menu-color"
+        
+        // 随机banner
+        const banners = ['01.png', '02.png', '03.png', '04.jpg', '05.png', '06.png', '07.png', '08.png', '09.png', '10.png'];
+        const randomBanner = banners[Math.floor(Math.random() * banners.length)];
+        document.getElementById('home-head').style.backgroundImage = 'url(/banner/' + randomBanner + ')';
+        document.getElementById('home-head').style.backgroundSize = 'cover';
+        document.getElementById('home-head').style.backgroundPosition = 'center';
     </script>
     <% if(theme.head_block_enable){ %> 
     <div id="home-info" class="home-info" @click="home_click">

@@ -26,7 +26,7 @@ menu:
       name: home
       theme: filled
     src: /
-  目录:
+  归档:
     icon:
       name: folder
       theme: filled
@@ -50,13 +50,14 @@ card:
         theme: filled
         src:
       link: https://github.com/EchoSnake
-    Telegram:
-      icon: 
-        type: antd-icon
-        name: phone
-        theme: filled
-        src:
-      link: https://t.me/DoDoWang
+    QQ:
+      icon:
+        type: iconfont
+        name: icon-qq
+        theme: 
+        src: 
+      link: tencent://message/?uin=965704308 
+      # 填写你的QQ号或QQ空间链接
     Email:
       icon:
         type: antd-icon
@@ -64,10 +65,13 @@ card:
         theme: filled
         src:
       link: mailto:echohaoran@gmail.com
-    
   friend_links:
-    Bilibili: https://space.bilibili.com/243789801
-    小红书: https://www.xiaohongshu.com/user/profile/5f2a6f4e0000000001002b1e
+    Bilibili:
+      icon: icon-bilibili-fill
+      link: https://space.bilibili.com/243789801
+    小红书:
+      icon: icon-xiaohongshu1
+      link: https://www.xiaohongshu.com/user/profile/5f2a6f4e0000000001002b1e
 
 # footer info
 footer:

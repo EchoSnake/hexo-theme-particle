@@ -87,6 +87,46 @@
             </span>
         </a>
         <% }%>
+        </div>
+    
     </div>
-
-</div>
+    
+    <!-- 赏杯咖啡 -->
+    <div class="donate-section" style="text-align: center; margin: 40px 0; padding: 20px;">
+        <div class="donate-button" style="position: relative; display: inline-block;">
+            <button style="background: linear-gradient(120deg, #ff9edb 0, #96ceff 100%); color: white; border: none; padding: 12px 30px; font-size: 16px; border-radius: 25px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: all 0.3s ease;">
+                ☕ 赏杯咖啡
+            </button>
+            <div class="donate-qrcode" style="display: none; position: absolute; bottom: 60px; left: 50%; transform: translateX(-50%); background: white; padding: 20px; border-radius: 10px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); z-index: 100;">
+                <div style="display: flex; gap: 20px;">
+                    <div style="text-align: center;">
+                        <img src="<%- rootlink %>微信收款码.png" alt="微信收款码" style="max-width: 225px; height: auto; border-radius: 8px;">
+                        <p style="margin-top: 10px; font-size: 14px; color: #666;">微信</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <img src="<%- rootlink %>支付宝收款码.jpg" alt="支付宝收款码" style="max-width: 225px; height: auto; border-radius: 8px;">
+                        <p style="margin-top: 10px; font-size: 14px; color: #666;">支付宝</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var donateBtn = document.querySelector('.donate-section .donate-button');
+        var qrcode = document.querySelector('.donate-section .donate-qrcode');
+        
+        if (donateBtn && qrcode) {
+            donateBtn.addEventListener('mouseenter', function() {
+                qrcode.style.display = 'block';
+            });
+            
+            donateBtn.addEventListener('mouseleave', function() {
+                qrcode.style.display = 'none';
+            });
+        }
+    });
+    </script>
+    
+    

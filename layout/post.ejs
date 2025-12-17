@@ -1,6 +1,43 @@
 <% var rootlink = config.root %> 
 <link rel="stylesheet" href="<%- rootlink %>css/post-body.css">
-<div class="article">
+
+<div style="display: flex; gap: 20px; max-width: 1400px; margin: 0 auto; padding: 20px;">
+    <!-- 文章内容 -->
+    <div class="article" style="flex: 1; min-width: 0;">
+    
+    <!-- 上一篇/下一篇导航 -->
+    <div style="display: flex; justify-content: space-between; margin-bottom: 20px; gap: 10px;">
+        <div style="flex: 1; display: flex;">
+            <% if(page.next){ 
+                var prevTitle = page.next.title || '无标题';
+                var prevShort = prevTitle.substring(0, 5);
+            %>
+            <a href="<%- url_for(page.next.path) %>" 
+               style="padding: 8px 12px; background: transparent; color: #666; text-decoration: none; border-radius: 6px; border: 1px solid #ddd; display: inline-flex; align-items: center; transition: all 0.3s; font-size: 14px;"
+               onmouseover="this.style.borderColor='#1890ff'; this.style.color='#1890ff';"
+               onmouseout="this.style.borderColor='#ddd'; this.style.color='#666';">
+                <i class="anticon anticon-left" style="margin-right: 6px;"></i>
+                <span style="white-space: nowrap;">上一篇: <%- prevShort %><% if(prevTitle.length > 5){ %>...<% } %></span>
+            </a>
+            <% } %>
+        </div>
+        
+        <div style="flex: 1; display: flex; justify-content: flex-end;">
+            <% if(page.prev){ 
+                var nextTitle = page.prev.title || '无标题';
+                var nextShort = nextTitle.substring(0, 5);
+            %>
+            <a href="<%- url_for(page.prev.path) %>" 
+               style="padding: 8px 12px; background: transparent; color: #666; text-decoration: none; border-radius: 6px; border: 1px solid #ddd; display: inline-flex; align-items: center; transition: all 0.3s; font-size: 14px;"
+               onmouseover="this.style.borderColor='#1890ff'; this.style.color='#1890ff';"
+               onmouseout="this.style.borderColor='#ddd'; this.style.color='#666';">
+                <span style="white-space: nowrap;">下一篇: <%- nextShort %><% if(nextTitle.length > 5){ %>...<% } %></span>
+                <i class="anticon anticon-right" style="margin-left: 6px;"></i>
+            </a>
+            <% } %>
+        </div>
+    </div>
+    
     <div>
         <h1>
             <a href="<%- rootlink %>/<%= page.title %>"><%= page.title %></a>
@@ -56,6 +93,41 @@
         <%- page.content %>
     </div>
 
+    <div class="donate-section" style="text-align: center; margin: 40px 0; padding: 20px; border-top: 1px solid #eee;">
+        <div class="donate-button" style="position: relative; display: inline-block;">
+            <button style="background: linear-gradient(120deg, #ff9edb 0, #96ceff 100%); color: white; border: none; padding: 12px 30px; font-size: 16px; border-radius: 25px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: all 0.3s ease;">
+                ☕ 赏杯咖啡
+            </button>
+            <div class="donate-qrcode" style="display: none; position: absolute; bottom: 60px; left: 50%; transform: translateX(-50%); background: white; padding: 20px; border-radius: 10px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); z-index: 100;">
+                <div style="display: flex; gap: 20px;">
+                    <div style="text-align: center;">
+                        <img src="/微信收款码.png" alt="微信收款码" style="max-width: 225px; height: auto; border-radius: 8px;">
+                        <p style="margin-top: 10px; font-size: 14px; color: #666;">微信</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <img src="/支付宝收款码.jpg" alt="支付宝收款码" style="max-width: 225px; height: auto; border-radius: 8px;">
+                        <p style="margin-top: 10px; font-size: 14px; color: #666;">支付宝</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var donateBtn = document.querySelector('.donate-button');
+            var qrcode = document.querySelector('.donate-qrcode');
+            
+            donateBtn.addEventListener('mouseenter', function() {
+                qrcode.style.display = 'block';
+            });
+            
+            donateBtn.addEventListener('mouseleave', function() {
+                qrcode.style.display = 'none';
+            });
+        });
+    </script>
+
     <% if(theme.gitalk.enable){ %>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
     <div id="comment">
@@ -63,4 +135,10 @@
         </div>
     </div>
     <% } %>
+    </div>
+
+    <!-- 右侧Card -->
+    <div id="home-card" style="width: 360px; flex-shrink: 0; position: relative; top: 0;">
+        <%- include("card") %>
+    </div>
 </div>

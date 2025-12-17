@@ -1,7 +1,7 @@
 <a-affix :offset-top="card_top">
-    <a-card class="card-style" style="width: 300px">
+    <a-card class="card-style" style="width: 360px">
         <div class="avatar">
-            <img src="<%- theme.head_img %> " alt="头像">
+            <img src="<%- config.root %><%- theme.head_img %>" alt="头像">
         </div>
         <div class="name">
             <%- config.author %>
@@ -21,6 +21,8 @@
                     <% if (theme.card.icon_links[key].icon.type == 'antd-icon'){ %>
                     <a-icon type="<%- theme.card.icon_links[key].icon.name %>"
                         theme="<%- theme.card.icon_links[key].icon.theme %>" />
+                    <% }else if(theme.card.icon_links[key].icon.type == 'iconfont'){ %>
+                    <i class="iconfont <%- theme.card.icon_links[key].icon.name %>" style="font-size: 18px;"></i>
                     <% }else{ %>
                     <img width="18px" height="18px" src="<%- theme.card.icon_links[key].icon.src %>" alt="<%- key %>">
                     <% } %>
@@ -31,11 +33,22 @@
         <div class="friend-links">
             <% Object.keys(theme.card.friend_links).forEach(function(key){ %>
             <div class="friend-link">
-                <a href="<%- theme.card.friend_links[key] %>">
+                <% 
+                var linkData = theme.card.friend_links[key];
+                var linkUrl = typeof linkData === 'string' ? linkData : linkData.link;
+                var linkIcon = typeof linkData === 'object' ? linkData.icon : null;
+                %>
+                <a href="<%- linkUrl %>">
+                    <% if(linkIcon){ %>
+                    <i class="iconfont <%- linkIcon %>" style="font-size: 16px; margin-right: 5px;"></i>
+                    <% } %>
                     <%- key %>
                 </a>
             </div>
             <% }) %>
+        </div>
+        <div class="wechat-qrcode" style="text-align: center; margin-top: 20px;">
+            <img src="/微信公众号图片.png" alt="微信公众号" style="width: 260px; border-radius: 8px; transition: transform 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
         </div>
     </a-card>
 </a-affix>
