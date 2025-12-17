@@ -81,9 +81,9 @@ footer:
 # https://github.com/gitalk/gitalk
 gitalk:
   enable: true
-  clientID: # GitHub Application Client ID
-  clientSecret: # GitHub Application Client Secret
-  repo: EchoSnake # The name of repository of store comments
+  clientID: Ov23liYz6EVvZYMe2lt6 # GitHub Application Client ID
+  clientSecret: 611c5b0f822b8284c50664eccc02401adbc3c6cf # GitHub Application Client Secret
+  repo: blog-comments # The name of repository of store comments
   owner: EchoSnake # GitHub repo owner
   admin: EchoSnake # GitHub repo owner and collaborators, only these guys can initialize github issues
   language: zh-CN # en, zh-CN, zh-TW, es-ES, fr, ru, de, pl and ko are currently available.
