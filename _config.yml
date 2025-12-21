@@ -31,6 +31,11 @@ menu:
       name: folder
       theme: filled
     src: /archives
+  报价:
+    icon:
+      name: credit-card
+      theme: filled
+    src: /quote
   关于我:
     icon:
       name: idcard
